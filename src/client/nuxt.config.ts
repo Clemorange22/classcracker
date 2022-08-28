@@ -1,4 +1,5 @@
 import { defineNuxtConfig } from "nuxt";
+import process from "process";
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -20,7 +21,7 @@ export default defineNuxtConfig({
   css: ["~/assets/styles/css/tailwind.css", "~/assets/styles/scss/main.scss"],
   runtimeConfig: {
     public: {
-      apiUrl: "http://localho.st:3333",
+      apiUrl: process.env.API_URL,
     },
   },
 });
