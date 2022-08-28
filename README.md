@@ -45,6 +45,8 @@ Note: La variable SCHOOL_NAME est le nom de votre établissement tel qu'il est i
 
 ```
 pnpm build
+cd build
+pnpm install
 pnpm start
 ```
 
