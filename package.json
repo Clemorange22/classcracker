@@ -1,0 +1,19 @@
+{
+  "name": "classcracker",
+  "version": "1.0.0",
+  "description": "A tool to reverse engineer classes from ecoledirecte website",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Clemorange22/classcracker.git"
+  },
+  "author": "Clément Boittin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Clemorange22/classcracker/issues"
+  },
+  "homepage": "https://github.com/Clemorange22/classcracker#readme"
+}
