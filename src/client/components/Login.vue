@@ -32,8 +32,11 @@
       </form>
     </div>
   </div>
-  <div class="container">
-    <div class="alert alert-error shadow-lg" v-if="loginError != ''">
+  <div class="container mx-auto mt-3">
+    <div
+      class="alert alert-error w-3/4 sm:w-1/2 mx-auto shadow-lg"
+      v-if="loginError != ''"
+    >
       <div>
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -6,6 +6,7 @@ import Ws from '../../Services/Ws'
 import Student from '../../Models/Student'
 import { DateTime } from 'luxon'
 import _ from 'lodash'
+import Logger from '@ioc:Adonis/Core/Logger'
 
 export default class LoginController {
   public async index(ctx: HttpContextContract) {
@@ -46,6 +47,7 @@ export default class LoginController {
       } else {
         throw new Error("showToClient:Votre classe n'est pas encore disponible !")
       }
+
       const student = await Student.find(id)
       const name = account._raw.nom + ' ' + account._raw.prenom
 
