@@ -47,6 +47,7 @@ export default class LoginController {
       } else {
         throw new Error("showToClient:Votre classe n'est pas encore disponible !")
       }
+      Logger.info(`${username} is logging in. ClassCode is ${classCode}`)
 
       const student = await Student.find(id)
       const name = account._raw.nom + ' ' + account._raw.prenom
