@@ -61,6 +61,7 @@
 import { io } from "socket.io-client";
 import { Ref } from "vue";
 import { ClassData } from "~~/composables";
+import { keys } from "lodash";
 
 const conf = useRuntimeConfig().public;
 const username = ref("");
@@ -109,7 +110,7 @@ async function login() {
         }
       );
     }
-  } catch (err: Error) {
+  } catch (err) {
     console.log(err);
   }
   loginPending.value = false;
@@ -124,10 +125,10 @@ async function listenToUpdates() {
     if (!classData.value) {
       return;
     }
-    if (!(student.class in classData.value)) {
+    if (!keys(classData.value.classList).includes(student.class)) {
       classData.value.classList[student.class] = [];
     }
-    if (!(student.name in classData.value.classList[student.class])) {
+    if (!classData.value.classList[student.class].includes(student.name)) {
       classData.value.classList[student.class].push(student.name);
     }
   });
