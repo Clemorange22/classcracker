@@ -48,40 +48,39 @@ export default class LoginController {
         throw new Error("showToClient:Votre classe n'est pas encore disponible !")
       }
       Logger.info(`${username} is logging in. ClassCode is ${classCode}`)
+    }
+    const student = await Student.find(id)
+    const name = account._raw.nom + ' ' + account._raw.prenom
 
-      const student = await Student.find(id)
-      const name = account._raw.nom + ' ' + account._raw.prenom
-
-      if (student) {
-        // Update student
-        await student
-          .merge({
-            class: classCode,
-            updatedAt: DateTime.local(),
-          })
-          .save()
-      } else {
-        await Student.create({
-          id: id,
-          name: name,
+    if (student) {
+      // Update student
+      await student
+        .merge({
           class: classCode,
-          createdAt: DateTime.local(),
           updatedAt: DateTime.local(),
         })
-      }
-      const students = await Student.all()
-      const classList = _.groupBy(students, 'class')
-      const classListWithNames = _.mapValues(classList, (students) => {
-        return _.map(students, (student) => {
-          return student.name
-        })
+        .save()
+    } else {
+      await Student.create({
+        id: id,
+        name: name,
+        class: classCode,
+        createdAt: DateTime.local(),
+        updatedAt: DateTime.local(),
       })
-      ctx.response.send({
-        classList: classListWithNames,
-        userClassCode: classCode,
-        userName: name,
-      })
-      Ws.io.emit('new:student', { name: name, class: classCode })
     }
+    const students = await Student.all()
+    const classList = _.groupBy(students, 'class')
+    const classListWithNames = _.mapValues(classList, (students) => {
+      return _.map(students, (student) => {
+        return student.name
+      })
+    })
+    ctx.response.send({
+      classList: classListWithNames,
+      userClassCode: classCode,
+      userName: name,
+    })
+    Ws.io.emit('new:student', { name: name, class: classCode })
   }
 }
